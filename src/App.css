@@ -62,6 +62,7 @@ body {
   float: left;
   font-size: 24px;
   font-weight: bold;
+  color: brown;
   line-height: 34px;
   height: 34px;
   margin-right: -1px;
@@ -87,4 +88,16 @@ body {
 
 .game-info {
   margin-left: 20px;
+}
+
+.playerTurn {
+  position: fixed; /* Stays in place while scrolling */
+  top: 10px; /* Margin from top */
+  right: 10px; /* Margin from right */
+  margin: 0; /* Remove default margins */
+  font-family: Roboto, sans-serif; /* Clean font */
+  font-size: 19px; /* Default readable size */
+  color: #333; /* Dark gray (better than pure black) */
+  line-height: 1.5; /* Spacing between lines */
+  font-weight: bolder;
 }
