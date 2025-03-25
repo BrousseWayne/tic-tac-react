@@ -54,28 +54,31 @@ body {
   font-family: sans-serif;
   margin: 20px;
   padding: 0;
+  background-color: black;
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: #333;
+  border: 1.5px solid #ffffff;
   float: left;
   font-size: 24px;
   font-weight: bold;
-  color: brown;
+  color: rgb(224, 15, 15);
   line-height: 34px;
-  height: 34px;
+  height: 100px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 100px;
 }
 
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 10px; /* Space between squares */
+  width: min-content; /* Fit content width */
+  margin: 20px auto; /* Center the board */
 }
 
 .status {
@@ -97,7 +100,12 @@ body {
   margin: 0; /* Remove default margins */
   font-family: Roboto, sans-serif; /* Clean font */
   font-size: 19px; /* Default readable size */
-  color: #333; /* Dark gray (better than pure black) */
+  color: #f4efef; /* Dark gray (better than pure black) */
   line-height: 1.5; /* Spacing between lines */
   font-weight: bolder;
+}
+
+.square:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
