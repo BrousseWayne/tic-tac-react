@@ -3,17 +3,7 @@ import "./App.css";
 
 const BOARD_SIZE = 9;
 
-type PlayerTurn = {
-  value: "Player 1" | "Player 2";
-};
-
-function PlayerTurnInfo({ value }: PlayerTurn) {
-  const [playerTurn, setPlayerTurn] = useState<PlayerTurn>();
-
-  console.log(value);
-  // setPlayerTurn(value);
-  return <p className="playerTurn"> This is: {value}</p>;
-}
+type Player = { name: "Player 1" | "Player 2"; symbol: "X" | "O" };
 
 type SquareProps = {
   value: string | null;
@@ -28,27 +18,41 @@ function Square({ value, onClick }: SquareProps) {
   );
 }
 
-class EventEmitter {
-  private events: Map<string, (() => void)[]>;
-}
-
 function App() {
-  const [squares, setSquares] = useState<string[]>(Array(BOARD_SIZE));
-  console.log(squares);
+  const [squares, setSquares] = useState<string[]>(Array(BOARD_SIZE).fill(""));
+  const [currentPlayer, setCurrentPlayer] = useState<number>(0);
 
-  const handleClick = (index) => {
+  const players: Player[] = [
+    {
+      name: "Player 1",
+      symbol: "X",
+    },
+    {
+      name: "Player 2",
+      symbol: "O",
+    },
+  ];
+
+  const nextTurn = () => {
+    setCurrentPlayer(1 - currentPlayer);
+  };
+
+  const handleClick = (index: number) => {
     setSquares((prev) => {
       const newSquares = [...prev];
-      newSquares[index] = "O";
+      newSquares[index] = players[currentPlayer].symbol;
+      nextTurn();
       return newSquares;
     });
   };
   return (
     <>
       {squares.map((value, index) => {
-        // <Square key={value} value={value} onClick={() => handleClick(index)} />;
+        console.log(value, index);
+        <Square key={index} value={value} onClick={() => handleClick(index)} />;
       })}
-      <PlayerTurnInfo value={"Player 2"} />;
+      {/* <Square value={value} onClick={() => handleClick(index)} />; */}
+      <p className="playerTurn">this is: {players[currentPlayer].name}</p>
     </>
   );
 }
