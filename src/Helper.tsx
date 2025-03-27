@@ -1,9 +1,5 @@
 import { Player } from "./type";
 
-function selectColorCode(player: Player) {
-  return player.name === "Player 1"
-    ? "highlight_Player_1"
-    : "highlight_Player_2";
+export default function selectColorCode(player: Player): string {
+  return player.symbol === "X" ? "X" : "O";
 }
-
-export default selectColorCode;

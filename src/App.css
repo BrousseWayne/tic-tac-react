@@ -104,17 +104,46 @@ body {
   font-weight: bolder;
 }
 
+@keyframes appear {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.square .symbol {
+  animation: appear 0.2s ease-out;
+}
+
 .square:disabled {
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: 0.9;
 }
 
-.highlight_Player_1 {
-  color: #e6210b;
+/* X symbol styling */
+.symbol-x {
+  color: #ff4757; /* Red color for X */
   font-weight: bolder;
 }
 
-.highlight_Player_2 {
-  color: #28e60b;
+.symbol-x:hover {
+  background: #ffecec; /* Light red background on hover */
+}
+
+/* O symbol styling */
+.symbol-o {
+  color: #2ed573; /* Green color for O */
   font-weight: bolder;
+}
+
+.symbol-o:hover {
+  background: #e8f9f0; /* Light green background on hover */
+}
+
+.square:not(.symbol-x):not(.symbol-o):hover {
+  background: #f0f0f0;
 }

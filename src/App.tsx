@@ -17,11 +17,36 @@ const players: Player[] = [
   },
 ];
 
-function Square({ player, onClick, disabled }: SquareProps) {
+function Square({ value, onClick, disabled }: SquareProps) {
   return (
-    <button className="square" onClick={onClick} disabled={disabled}>
-      <span className={selectColorCode(player)}>{player.symbol}</span>
+    <button
+      className={`square ${value ? `symbol-${value.toLowerCase()}` : ""}`}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      <span key={value} className="symbol">
+        {value}
+      </span>
     </button>
+  );
+}
+
+function TurnInfo(props: { currentPlayer: number }) {
+  console.log(
+    `symbol-${selectColorCode(players[props.currentPlayer]).toLowerCase()}`
+  );
+  return (
+    <p className="playerTurn">
+      This is:&nbsp;
+      <span
+        className={`symbol-${selectColorCode(
+          players[props.currentPlayer]
+        ).toLowerCase()}`}
+      >
+        {players[props.currentPlayer].name}
+      </span>
+      &nbsp; turn
+    </p>
   );
 }
 
@@ -56,21 +81,14 @@ function App() {
           return (
             <Square
               key={index}
-              player={players[currentPlayer]}
+              value={value}
               onClick={() => handleClick(index)}
               disabled={value !== null}
             />
           );
         })}
       </div>
-      {squares.map}
-      <p className="playerTurn">
-        This is:&nbsp;
-        <span className={selectColorCode(players[currentPlayer])}>
-          {players[currentPlayer].name}
-        </span>
-        &nbsp; turn
-      </p>
+      <TurnInfo currentPlayer={currentPlayer} />
     </>
   );
 }
