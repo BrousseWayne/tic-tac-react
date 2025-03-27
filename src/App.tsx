@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Player, SquareProps } from "./type";
-import selectColorCode from "./Helper";
+import confetti from "canvas-confetti";
+
 import "./App.css";
+import "./ResetButton.css";
+import "./ScoreBoard.css";
 import checkWinCondition from "./gameLogic";
 
 const BOARD_SIZE = 9;
@@ -37,28 +40,88 @@ function TurnInfo(props: { currentPlayer: number }) {
   );
 }
 
+function Scoreboard({
+  players,
+  currentPlayer,
+  scores,
+}: {
+  players: Player[];
+  currentPlayer: number;
+  scores: number[];
+}) {
+  return (
+    <div className="scoreboard">
+      {players.map((player, index) => (
+        <>
+          <div
+            key={player.symbol}
+            className={`player-score ${
+              index === currentPlayer ? "active" : ""
+            }`}
+          >
+            <div className="player-name">{player.name}</div>
+            <div
+              className={`player-symbol symbol-${player.symbol.toLowerCase()}`}
+            >
+              {player.symbol}
+            </div>
+            <div className="player-points">{scores[index]}</div>
+          </div>
+          {index === 0 && <div className="scoreboard-vs">VS</div>}
+        </>
+      ))}
+    </div>
+  );
+}
+
 function App() {
   const [squares, setSquares] = useState<string[]>(
     Array(BOARD_SIZE).fill(null)
   );
   const [currentPlayer, setCurrentPlayer] = useState<number>(0);
+  const [gameOver, setGameOver] = useState<boolean>(false);
+  const [scores, setScores] = useState([0, 0]);
 
   const nextTurn = () => {
     setCurrentPlayer((prev) => 1 - prev);
   };
 
+  const handleGameEnd = (winType: string) => {
+    setGameOver(true);
+    if (winType === "player") {
+      setScores((prev) => {
+        const newScores = [...prev];
+        newScores[currentPlayer] += 1;
+        return newScores;
+      });
+    }
+  };
+
   const handleClick = (index: number) => {
-    if (squares[index]) return;
+    if (gameOver || squares[index]) {
+      return;
+    }
 
     const currentSymbol = players[currentPlayer].symbol;
 
     const newSquares = [...squares];
     newSquares[index] = currentSymbol;
-
     setSquares(newSquares);
 
-    checkWinCondition(index, newSquares);
-    nextTurn();
+    if (checkWinCondition(index, newSquares)) {
+      alert(`${players[currentPlayer].name} wins!`);
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+      handleGameEnd("player");
+    } else if (newSquares.every(Boolean)) {
+      alert(`DRAW`);
+      handleGameEnd("draw");
+    } else {
+      nextTurn();
+    }
   };
 
   return (
@@ -74,6 +137,23 @@ function App() {
         ))}
       </div>
       <TurnInfo currentPlayer={currentPlayer} />
+      <div className="reset-container">
+        <button
+          className="reset-btn"
+          onClick={() => {
+            setSquares(Array(9).fill(null));
+            setCurrentPlayer(0);
+            setGameOver(false);
+          }}
+        >
+          ↻ New Game
+        </button>
+      </div>
+      <Scoreboard
+        currentPlayer={currentPlayer}
+        players={players}
+        scores={scores}
+      ></Scoreboard>
     </>
   );
 }

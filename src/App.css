@@ -96,3 +96,18 @@ body {
     opacity: 1;
   }
 }
+
+.win-line {
+  position: absolute;
+  background: gold;
+  animation: drawLine 0.5s ease-out forwards;
+}
+
+@keyframes drawLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

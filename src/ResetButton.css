@@ -1,0 +1,28 @@
+.reset-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.reset-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px; /* Pill shape */
+  background: #ff4757; /* Alert red */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.reset-btn:hover {
+  background: #e84118; /* Darker red */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.reset-btn:active {
+  transform: translateY(0);
+}
