@@ -58,12 +58,11 @@ body {
 }
 
 .square {
-  background: #333;
+  background: #746f6f;
   border: 1.5px solid #ffffff;
   float: left;
   font-size: 24px;
   font-weight: bold;
-  color: rgb(224, 15, 15);
   line-height: 34px;
   height: 100px;
   margin-right: -1px;
@@ -108,4 +107,14 @@ body {
 .square:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.highlight_Player_1 {
+  color: #e6210b;
+  font-weight: bolder;
+}
+
+.highlight_Player_2 {
+  color: #28e60b;
+  font-weight: bolder;
 }
