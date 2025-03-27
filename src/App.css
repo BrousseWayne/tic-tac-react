@@ -1,51 +1,4 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
-  margin: 20px;
-  padding: 0;
-}
-
-h1 {
-  margin-top: 0;
-  font-size: 22px;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-h3 {
-  margin-top: 0;
-  font-size: 18px;
-}
-
-h4 {
-  margin-top: 0;
-  font-size: 16px;
-}
-
-h5 {
-  margin-top: 0;
-  font-size: 14px;
-}
-
-h6 {
-  margin-top: 0;
-  font-size: 12px;
-}
-
-code {
-  font-size: 1.2em;
-}
-
-ul {
-  padding-inline-start: 20px;
-}
-
+/* Reset and base styles */
 * {
   box-sizing: border-box;
 }
@@ -55,55 +8,84 @@ body {
   margin: 20px;
   padding: 0;
   background-color: black;
+  color: white;
+}
+
+/* Board and squares */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: min-content;
+  margin: 20px auto;
 }
 
 .square {
   background: #746f6f;
   border: 1.5px solid #ffffff;
-  float: left;
   font-size: 24px;
   font-weight: bold;
-  line-height: 34px;
   height: 100px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
   width: 100px;
-}
-
-.board {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-  gap: 10px; /* Space between squares */
-  width: min-content; /* Fit content width */
-  margin: 20px auto; /* Center the board */
-}
-
-.status {
-  margin-bottom: 10px;
-}
-.game {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.game-info {
-  margin-left: 20px;
+/* Hover effects */
+.square:not(:disabled):hover {
+  background: #8a8585;
 }
 
+.square.symbol-x:not(:disabled):hover {
+  background: #8a4545;
+}
+
+.square.symbol-o:not(:disabled):hover {
+  background: #458a5e;
+}
+
+/* Symbols */
+.symbol {
+  animation: appear 0.2s ease-out;
+}
+
+.symbol-x {
+  color: #ff4757;
+}
+
+.symbol-o {
+  color: #2ed573;
+}
+
+/* Disabled state */
+.square:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+/* Player turn indicator */
 .playerTurn {
-  position: fixed; /* Stays in place while scrolling */
-  top: 10px; /* Margin from top */
-  right: 10px; /* Margin from right */
-  margin: 0; /* Remove default margins */
-  font-family: Roboto, sans-serif; /* Clean font */
-  font-size: 19px; /* Default readable size */
-  color: #f4efef; /* Dark gray (better than pure black) */
-  line-height: 1.5; /* Spacing between lines */
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-family: Roboto, sans-serif;
+  font-size: 19px;
+  color: #f4efef;
   font-weight: bolder;
 }
 
+.player-1 {
+  color: #ff4757;
+}
+
+.player-2 {
+  color: #2ed573;
+}
+
+/* Animation */
 @keyframes appear {
   from {
     transform: scale(0.5);
@@ -113,37 +95,4 @@ body {
     transform: scale(1);
     opacity: 1;
   }
-}
-
-.square .symbol {
-  animation: appear 0.2s ease-out;
-}
-
-.square:disabled {
-  cursor: not-allowed;
-  opacity: 0.9;
-}
-
-/* X symbol styling */
-.symbol-x {
-  color: #ff4757; /* Red color for X */
-  font-weight: bolder;
-}
-
-.symbol-x:hover {
-  background: #ffecec; /* Light red background on hover */
-}
-
-/* O symbol styling */
-.symbol-o {
-  color: #2ed573; /* Green color for O */
-  font-weight: bolder;
-}
-
-.symbol-o:hover {
-  background: #e8f9f0; /* Light green background on hover */
-}
-
-.square:not(.symbol-x):not(.symbol-o):hover {
-  background: #f0f0f0;
 }

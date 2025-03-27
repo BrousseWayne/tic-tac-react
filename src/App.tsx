@@ -1,20 +1,13 @@
 import { useState } from "react";
 import { Player, SquareProps } from "./type";
 import selectColorCode from "./Helper";
-
 import "./App.css";
 
 const BOARD_SIZE = 9;
 
 const players: Player[] = [
-  {
-    name: "Player 1",
-    symbol: "X",
-  },
-  {
-    name: "Player 2",
-    symbol: "O",
-  },
+  { name: "Player 1", symbol: "X" },
+  { name: "Player 2", symbol: "O" },
 ];
 
 function Square({ value, onClick, disabled }: SquareProps) {
@@ -24,7 +17,7 @@ function Square({ value, onClick, disabled }: SquareProps) {
       onClick={onClick}
       disabled={disabled}
     >
-      <span key={value} className="symbol">
+      <span className="symbol" key={value}>
         {value}
       </span>
     </button>
@@ -32,20 +25,13 @@ function Square({ value, onClick, disabled }: SquareProps) {
 }
 
 function TurnInfo(props: { currentPlayer: number }) {
-  console.log(
-    `symbol-${selectColorCode(players[props.currentPlayer]).toLowerCase()}`
-  );
   return (
     <p className="playerTurn">
       This is:&nbsp;
-      <span
-        className={`symbol-${selectColorCode(
-          players[props.currentPlayer]
-        ).toLowerCase()}`}
-      >
+      <span className={`player-${props.currentPlayer + 1}`}>
         {players[props.currentPlayer].name}
       </span>
-      &nbsp; turn
+      &nbsp;turn
     </p>
   );
 }
@@ -57,36 +43,29 @@ function App() {
   const [currentPlayer, setCurrentPlayer] = useState<number>(0);
 
   const nextTurn = () => {
-    // player can be 0 or 1
-
-    //checkVictoryCondition
-    setCurrentPlayer(1 - currentPlayer);
+    setCurrentPlayer((prev) => 1 - prev);
   };
 
   const handleClick = (index: number) => {
-    setSquares((prev) => {
-      const newSquares = [...prev];
-      if (!newSquares[index]) {
-        newSquares[index] = players[currentPlayer].symbol;
-      }
-      nextTurn();
-      return newSquares;
-    });
+    if (squares[index]) return;
+
+    const newSquares = [...squares];
+    newSquares[index] = players[currentPlayer].symbol;
+    setSquares(newSquares);
+    nextTurn();
   };
 
   return (
     <>
       <div className="board">
-        {squares.map((value, index) => {
-          return (
-            <Square
-              key={index}
-              value={value}
-              onClick={() => handleClick(index)}
-              disabled={value !== null}
-            />
-          );
-        })}
+        {squares.map((value, index) => (
+          <Square
+            key={index}
+            value={value}
+            onClick={() => handleClick(index)}
+            disabled={value !== null}
+          />
+        ))}
       </div>
       <TurnInfo currentPlayer={currentPlayer} />
     </>
