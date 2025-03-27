@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Player, SquareProps } from "./type";
 import selectColorCode from "./Helper";
 import "./App.css";
+import checkWinCondition from "./gameLogic";
 
 const BOARD_SIZE = 9;
 
@@ -49,9 +50,14 @@ function App() {
   const handleClick = (index: number) => {
     if (squares[index]) return;
 
+    const currentSymbol = players[currentPlayer].symbol;
+
     const newSquares = [...squares];
-    newSquares[index] = players[currentPlayer].symbol;
+    newSquares[index] = currentSymbol;
+
     setSquares(newSquares);
+
+    checkWinCondition(index, newSquares);
     nextTurn();
   };
 
