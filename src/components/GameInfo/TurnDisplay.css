@@ -1,0 +1,17 @@
+.playerTurn {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  font-family: Roboto, sans-serif;
+  font-size: 19px;
+  color: #f4efef;
+  font-weight: bolder;
+}
+
+.player-1 {
+  color: #ff4757;
+}
+
+.player-2 {
+  color: #2ed573;
+}

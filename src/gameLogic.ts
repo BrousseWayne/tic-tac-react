@@ -19,8 +19,8 @@ const winDirections: [Direction, Direction][] = [
   ], // Diagonal (top-right to bottom-left)
 ];
 function indexToGrid(index: number): [number, number] {
-  const row = Math.floor(index / 3); // 0, 1, or 2
-  const col = index % 3; // 0, 1, or 2
+  const row = Math.floor(index / 3);
+  const col = index % 3;
   return [row, col];
 }
 
@@ -54,7 +54,10 @@ function countConsecutive(
   return count;
 }
 
-export default function checkWinCondition(index: number, squares: string[]) {
+export default function checkWinCondition(
+  index: number,
+  squares: string[]
+): boolean {
   const [row, col] = indexToGrid(index);
   const player = squares[index];
 
@@ -68,4 +71,6 @@ export default function checkWinCondition(index: number, squares: string[]) {
       return true;
     }
   }
+
+  return false;
 }

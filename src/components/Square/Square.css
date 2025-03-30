@@ -1,0 +1,57 @@
+.square {
+  background: #746f6f;
+  border: 1.5px solid #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover effects */
+.square:not(:disabled):hover {
+  background: #8a8585;
+}
+
+.square.symbol-x:not(:disabled):hover {
+  background: #8a4545;
+}
+
+.square.symbol-o:not(:disabled):hover {
+  background: #458a5e;
+}
+
+/* Symbols */
+.symbol {
+  animation: appear 0.2s ease-out;
+}
+
+.symbol-x {
+  color: #ff4757;
+}
+
+.symbol-o {
+  color: #2ed573;
+}
+
+/* Disabled state */
+.square:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+/* Animation */
+@keyframes appear {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
