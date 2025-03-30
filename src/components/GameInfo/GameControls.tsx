@@ -1,3 +1,4 @@
+import "./GameControls.css";
 export const GameControls = ({ onReset }: { onReset: () => void }) => {
   return (
     <div className="reset-container">

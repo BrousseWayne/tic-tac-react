@@ -1,17 +1,16 @@
-import { Player } from "../../types/gameTypes";
+import { PLAYERS } from "../../game/utils/constants";
+import "./Scoreboard.css";
 
 export function Scoreboard({
-  players,
   currentPlayer,
   scores,
 }: {
-  players: Player[];
   currentPlayer: number;
   scores: number[];
 }) {
   return (
     <div className="scoreboard">
-      {players.map((player, index) => (
+      {PLAYERS.map((player, index) => (
         <>
           <div
             key={player.symbol}
