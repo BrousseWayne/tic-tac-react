@@ -1,8 +1,8 @@
 import { Player } from "../types/gameTypes";
 
-export const BOARD_ROW_SIZE = 3;
-export const BOARD_COL_SIZE = 3;
-export const WIN_LINE_SIZE = 3;
+export const BOARD_ROW_SIZE = 4;
+export const BOARD_COL_SIZE = BOARD_ROW_SIZE;
+export const WIN_LINE_SIZE = BOARD_ROW_SIZE;
 export const BOARD_SIZE = BOARD_COL_SIZE * BOARD_ROW_SIZE;
 
 export const PLAYERS: Player[] = [

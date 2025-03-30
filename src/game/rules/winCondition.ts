@@ -30,26 +30,26 @@ function countConsecutive(
   squares: string[],
   row: number,
   col: number,
-  [dr, dc]: [number, number],
+  [deltaRow, deltaCol]: [number, number],
   player: string
 ): number {
-  let count = 0;
-  let r = row + dr;
-  let c = col + dc;
+  let consecutiveSymbol = 0;
+  let currentRow = row + deltaRow;
+  let currentCol = col + deltaCol;
 
   while (
-    r >= 0 &&
-    r < BOARD_ROW_SIZE &&
-    c >= 0 &&
-    c < BOARD_COL_SIZE &&
-    squares[gridToIndex(r, c)] === player
+    currentRow >= 0 &&
+    currentRow < BOARD_ROW_SIZE &&
+    currentCol >= 0 &&
+    currentCol < BOARD_COL_SIZE &&
+    squares[gridToIndex(currentRow, currentCol)] === player
   ) {
-    count++;
-    r += dr;
-    c += dc;
+    consecutiveSymbol++;
+    currentRow += deltaRow;
+    currentCol += deltaCol;
   }
 
-  return count;
+  return consecutiveSymbol;
 }
 
 export const checkWinCondition = (

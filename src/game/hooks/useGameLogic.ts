@@ -18,7 +18,6 @@ export const useGameLogic = () => {
   };
 
   const handleMove = (index: number) => {
-    console.log(gameStatus);
     if (gameStatus !== "playing" || squares[index]) {
       return { gameStatus: "error", winner: "" };
     }

@@ -1,6 +1,6 @@
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(var(--board-division), 1fr);
   gap: 10px;
   width: min-content;
   margin: 20px auto;
