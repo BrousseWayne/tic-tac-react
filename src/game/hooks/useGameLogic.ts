@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { BOARD_SIZE, PLAYERS } from "./game/utils/constants";
-import checkWinCondition from "./gameLogic";
+import { BOARD_SIZE, PLAYERS } from "../../utils/constants";
+import checkWinCondition from "../rules/winCondition";
 
 export const useGameLogic = () => {
   const [squares, setSquares] = useState<string[]>(

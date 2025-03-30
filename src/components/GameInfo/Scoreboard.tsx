@@ -1,4 +1,4 @@
-import { PLAYERS } from "../../game/utils/constants";
+import { PLAYERS } from "../../utils/constants";
 import "./Scoreboard.css";
 
 export function Scoreboard({

@@ -1,4 +1,4 @@
-import { Player } from "../../types/gameTypes";
+import { Player } from "../types/gameTypes";
 
 export const BOARD_ROW_SIZE = 3;
 export const BOARD_COL_SIZE = 3;

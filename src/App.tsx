@@ -1,4 +1,3 @@
-import { useState } from "react";
 import confetti from "canvas-confetti";
 
 import "./App.css";
@@ -6,7 +5,7 @@ import "./App.css";
 import { Board } from "./components/Board/Board";
 import TurnDisplay from "./components/GameInfo/TurnDisplay";
 import { Scoreboard } from "./components/GameInfo/Scoreboard";
-import { useGameLogic } from "./useGameLogic";
+import { useGameLogic } from "./game/hooks/useGameLogic";
 import { GameControls } from "./components/GameInfo/GameControls";
 
 function App() {

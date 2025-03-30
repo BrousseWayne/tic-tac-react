@@ -1,6 +1,8 @@
+import { gridToIndex, indexToGrid } from "../../utils/boardUtils";
+
 type Direction = [number, number];
 
-const winDirections: [Direction, Direction][] = [
+const WIN_DIRECTIONS: [Direction, Direction][] = [
   [
     [0, 1],
     [0, -1],
@@ -18,15 +20,6 @@ const winDirections: [Direction, Direction][] = [
     [-1, 1],
   ], // Diagonal (top-right to bottom-left)
 ];
-function indexToGrid(index: number): [number, number] {
-  const row = Math.floor(index / 3);
-  const col = index % 3;
-  return [row, col];
-}
-
-function gridToIndex(row: number, col: number): number {
-  return row * 3 + col;
-}
 
 function countConsecutive(
   squares: string[],
@@ -61,7 +54,7 @@ export default function checkWinCondition(
   const [row, col] = indexToGrid(index);
   const player = squares[index];
 
-  for (const [dirA, dirB] of winDirections) {
+  for (const [dirA, dirB] of WIN_DIRECTIONS) {
     let count = 1;
 
     count += countConsecutive(squares, row, col, dirA, player);
