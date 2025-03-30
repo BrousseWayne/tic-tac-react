@@ -17,14 +17,6 @@
   background: #8a8585; /* Base hover color */
 }
 
-.square.symbol-x:not(:disabled):hover {
-  background: #8a4545; /* X hover color */
-}
-
-.square.symbol-o:not(:disabled):hover {
-  background: #458a5e; /* O hover color */
-}
-
 /* Symbol styles - unaffected by disabled state */
 .symbol {
   animation: appear 0.2s ease-out;
