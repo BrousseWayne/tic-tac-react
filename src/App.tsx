@@ -5,6 +5,9 @@ import "./App.css";
 import "./ResetButton.css";
 import "./ScoreBoard.css";
 import checkWinCondition from "./gameLogic";
+import { Board } from "./components/Board/Board";
+import TurnDisplay from "./components/GameInfo/TurnDisplay";
+import { Scoreboard } from "./components/GameInfo/Scoreboard";
 
 function App() {
   const [squares, setSquares] = useState<string[]>(
@@ -29,7 +32,7 @@ function App() {
     }
   };
 
-  const handleClick = (index: number) => {
+  const onSquareClick = (index: number) => {
     if (gameOver || squares[index]) {
       return;
     }
@@ -58,16 +61,7 @@ function App() {
 
   return (
     <>
-      <div className="board">
-        {squares.map((value, index) => (
-          <Square
-            key={index}
-            value={value}
-            onClick={() => handleClick(index)}
-            disabled={value !== null}
-          />
-        ))}
-      </div>
+      <Board squares={squares} onSquareClick={onSquareClick} />
       <TurnDisplay currentPlayer={currentPlayer} />
       <div className="reset-container">
         <button
