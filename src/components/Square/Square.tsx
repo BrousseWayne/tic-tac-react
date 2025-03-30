@@ -1,5 +1,10 @@
-import { SquareProps } from "../../types/gameTypes";
 import "./Square.css";
+
+type SquareProps = {
+  value: string | null;
+  onClick: () => void;
+  disabled: boolean;
+};
 
 export default function Square({ value, onClick, disabled }: SquareProps) {
   return (

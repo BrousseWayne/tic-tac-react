@@ -1,5 +1,5 @@
 .square {
-  background: #746f6f;
+  background: #746f6f; /* Default square color */
   border: 1.5px solid #ffffff;
   font-size: 24px;
   font-weight: bold;
@@ -12,36 +12,41 @@
   transition: background-color 0.2s ease;
 }
 
-/* Hover effects */
+/* Hover effects - only for enabled squares */
 .square:not(:disabled):hover {
-  background: #8a8585;
+  background: #8a8585; /* Base hover color */
 }
 
 .square.symbol-x:not(:disabled):hover {
-  background: #8a4545;
+  background: #8a4545; /* X hover color */
 }
 
 .square.symbol-o:not(:disabled):hover {
-  background: #458a5e;
+  background: #458a5e; /* O hover color */
 }
 
-/* Symbols */
+/* Symbol styles - unaffected by disabled state */
 .symbol {
   animation: appear 0.2s ease-out;
 }
 
 .symbol-x {
-  color: #ff4757;
+  color: var(--color-player-1); /* Red/X color */
 }
 
 .symbol-o {
-  color: #2ed573;
+  color: var(--color-player-2); /* Green/O color */
 }
 
-/* Disabled state */
+/* Disabled state - only affects the square background */
 .square:disabled {
   cursor: not-allowed;
-  opacity: 0.9;
+  background: #5a5656 !important; /* Darker gray for disabled */
+}
+
+/* Ensure symbols remain visible when disabled */
+.square:disabled .symbol {
+  opacity: 1 !important; /* Override any inherited opacity */
 }
 
 /* Animation */

@@ -1,84 +1,43 @@
 .scoreboard {
   display: flex;
-  justify-content: space-between;
-  max-width: 300px;
-  margin: 20px auto;
-  padding: 15px;
-  background: #1a1a1a;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  font-family: "Roboto", sans-serif;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 0;
 }
 
-.player-score {
-  text-align: center;
-  padding: 12px 15px;
+.score-card {
+  padding: 1rem;
   border-radius: 8px;
-  transition: all 0.3s ease;
-  flex: 1;
-  margin: 0 5px;
+  text-align: center;
+  min-width: 100px;
   background: #252525;
+  transition: all 0.3s;
 }
 
-.player-score.active {
-  background: linear-gradient(to right, #252525, #333);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2),
-    inset 0 0 10px rgba(255, 255, 255, 0.05);
-  position: relative;
-  z-index: 1;
-}
-
-.player-score.active::after {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border-radius: 10px;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 215, 0, 0.3),
-    rgba(255, 215, 0, 0)
-  );
-  z-index: -1;
+.score-card.active {
+  box-shadow: 0 0 0 2px var(--color-active);
 }
 
 .player-name {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 5px;
-  color: #e0e0e0;
+  font-size: 1rem;
+  color: #ccc;
 }
 
 .player-symbol {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 5px;
-  text-shadow: 0 0 8px currentColor;
+  margin: 0.5rem 0;
 }
 
 .player-symbol.symbol-x {
-  color: #ff6b81;
+  color: var(--color-player-1);
 }
-
 .player-symbol.symbol-o {
-  color: #7bed9f;
+  color: var(--color-player-2);
 }
 
-.player-points {
-  font-size: 28px;
-  font-weight: 700;
-  color: #f8f8f8;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-.scoreboard-vs {
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  color: #555;
+.player-score {
+  font-size: 1.8rem;
   font-weight: bold;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  color: white;
 }

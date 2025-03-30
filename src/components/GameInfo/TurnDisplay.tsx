@@ -1,14 +1,15 @@
 import { PLAYERS } from "../../utils/constants";
 import "./TurnDisplay.css";
 
-export default function TurnDisplay(props: { currentPlayer: number }) {
-  return (
-    <p className="playerTurn">
-      This is:&nbsp;
-      <span className={`player-${props.currentPlayer + 1}`}>
-        {PLAYERS[props.currentPlayer].name}
-      </span>
-      &nbsp;turn
-    </p>
-  );
-}
+type TurnDisplayProps = {
+  currentPlayer: number;
+};
+
+export const TurnDisplay = ({ currentPlayer }: TurnDisplayProps) => (
+  <p className="turn-display">
+    Current turn:{" "}
+    <span className={`player-${currentPlayer + 1}`}>
+      {PLAYERS[currentPlayer].name}
+    </span>
+  </p>
+);

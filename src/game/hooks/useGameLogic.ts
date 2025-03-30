@@ -1,24 +1,26 @@
 import { useState } from "react";
 import { BOARD_SIZE, PLAYERS } from "../../utils/constants";
-import checkWinCondition from "../rules/winCondition";
+import { GameStatus } from "../../types/gameTypes";
+import { checkWinCondition } from "../rules/winCondition";
 
 export const useGameLogic = () => {
   const [squares, setSquares] = useState<string[]>(
     Array(BOARD_SIZE).fill(null)
   );
   const [currentPlayer, setCurrentPlayer] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
+  const [gameStatus, setGameStatus] = useState<GameStatus>("playing");
   const [scores, setScores] = useState([0, 0]);
 
   const resetGame = () => {
     setSquares(Array(BOARD_SIZE).fill(null));
     setCurrentPlayer(0);
-    setGameOver(false);
+    setGameStatus("playing");
   };
 
   const handleMove = (index: number) => {
-    if (gameOver || squares[index]) {
-      return { gameStatus: "", winner: "" };
+    console.log(gameStatus);
+    if (gameStatus !== "playing" || squares[index]) {
+      return { gameStatus: "error", winner: "" };
     }
 
     const newSquares = [...squares];
@@ -26,7 +28,7 @@ export const useGameLogic = () => {
     setSquares(newSquares);
 
     if (checkWinCondition(index, newSquares)) {
-      setGameOver(true);
+      setGameStatus("win");
       setScores((prev) => {
         const newScores = [...prev];
         newScores[currentPlayer] += 1;
@@ -36,7 +38,7 @@ export const useGameLogic = () => {
     }
 
     if (newSquares.every(Boolean)) {
-      setGameOver(true);
+      setGameStatus("draw");
       return { gameStatus: "draw", winner: "none" };
     }
 

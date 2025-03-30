@@ -3,7 +3,7 @@ import confetti from "canvas-confetti";
 import "./App.css";
 
 import { Board } from "./components/Board/Board";
-import TurnDisplay from "./components/GameInfo/TurnDisplay";
+import { TurnDisplay } from "./components/GameInfo/TurnDisplay";
 import { Scoreboard } from "./components/GameInfo/Scoreboard";
 import { useGameLogic } from "./game/hooks/useGameLogic";
 import { GameControls } from "./components/GameInfo/GameControls";
@@ -14,6 +14,9 @@ function App() {
 
   const onSquareClick = (index: number) => {
     const result = handleMove(index);
+    if (result.gameStatus === "error") {
+      return;
+    }
     if (result.gameStatus === "win") {
       alert(`${result.winner} wins!`);
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });

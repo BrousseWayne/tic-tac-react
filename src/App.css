@@ -9,3 +9,13 @@ body {
   background-color: black;
   color: rgb(0, 0, 0);
 }
+
+:root {
+  /* Player Colors */
+  --color-player-1: #ff4757;
+  --color-player-2: #2ed573;
+
+  /* State Colors */
+  --color-active: gold;
+  --color-disabled: #777;
+}

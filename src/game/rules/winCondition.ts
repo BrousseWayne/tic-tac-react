@@ -1,4 +1,9 @@
 import { gridToIndex, indexToGrid } from "../../utils/boardUtils";
+import {
+  BOARD_COL_SIZE,
+  BOARD_ROW_SIZE,
+  WIN_LINE_SIZE,
+} from "../../utils/constants";
 
 type Direction = [number, number];
 
@@ -34,9 +39,9 @@ function countConsecutive(
 
   while (
     r >= 0 &&
-    r < 3 &&
+    r < BOARD_ROW_SIZE &&
     c >= 0 &&
-    c < 3 &&
+    c < BOARD_COL_SIZE &&
     squares[gridToIndex(r, c)] === player
   ) {
     count++;
@@ -47,10 +52,10 @@ function countConsecutive(
   return count;
 }
 
-export default function checkWinCondition(
+export const checkWinCondition = (
   index: number,
   squares: string[]
-): boolean {
+): boolean => {
   const [row, col] = indexToGrid(index);
   const player = squares[index];
 
@@ -60,10 +65,10 @@ export default function checkWinCondition(
     count += countConsecutive(squares, row, col, dirA, player);
     count += countConsecutive(squares, row, col, dirB, player);
 
-    if (count >= 3) {
+    if (count >= WIN_LINE_SIZE) {
       return true;
     }
   }
 
   return false;
-}
+};
